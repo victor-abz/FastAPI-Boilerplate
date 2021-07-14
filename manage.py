@@ -8,6 +8,8 @@ from app.utils.logger import Logging
 from app.utils.exceptions import CustomException
 from app.initializer import IncludeAPIRouter
 from app.config import config
+from app.database.base import Base
+from app.database import SessionLocal, engine
 
 def init_cors(app: FastAPI) -> None:
     app.add_middleware(
@@ -27,6 +29,9 @@ def init_listeners(app: FastAPI) -> None:
             status_code=exc.code,
             content={"error_code": exc.error_code, "message": exc.message},
         )
+def create_tables():
+    Base.metadata.create_all(bind=engine)
+    
 
 # Initialize APP
 def get_application():
@@ -37,6 +42,7 @@ def get_application():
     _app.include_router(IncludeAPIRouter())
     init_cors(app=_app)
     init_listeners(app=_app)
+    create_tables()
     return _app
 
 
