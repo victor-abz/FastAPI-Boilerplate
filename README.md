@@ -8,7 +8,7 @@ $ pip install -r requirements.txt
 ```
 
 ### Start App
-run 
+ 
 ```shell
 $ python main.py
 ```

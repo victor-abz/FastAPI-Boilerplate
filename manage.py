@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.utils.logger import Logging
 from app.utils.exceptions import CustomException
 from app.initializer import IncludeAPIRouter
+from app.config import config
 
 def init_cors(app: FastAPI) -> None:
     app.add_middleware(
@@ -29,9 +30,9 @@ def init_listeners(app: FastAPI) -> None:
 
 # Initialize APP
 def get_application():
-    _app = FastAPI(title='Midas Loan ML',
-                   description='Midas Loan API',
-                   version='1.0.0',
+    _app = FastAPI(title=config.API_NAME,
+                   description=config.API_DESCRIPTION,
+                   version=config.API_VERSION,
                    dependencies=[Depends(Logging)],)
     _app.include_router(IncludeAPIRouter())
     init_cors(app=_app)

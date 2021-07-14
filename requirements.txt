@@ -1,11 +1,13 @@
 fastapi
 uvicorn
+
+#for database   #new
+sqlalchemy         
+psycopg2
+
+#for loading environment variables  #new
+python-dotenv
+
+#for your ML
 pandas
 numpy
-python-dotenv
-# motor
-# spacy
-# wordninja
-# contractions
-# streamlit
-# pyyaml

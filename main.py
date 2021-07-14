@@ -6,6 +6,6 @@ if __name__ == "__main__":
         app="manage:app",
         host=config.APP_HOST,
         port=config.APP_PORT,
-        reload=config.ENV != "production",
+        reload=config.ENV != "prod",
         workers=1,
     )
